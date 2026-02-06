@@ -4,7 +4,7 @@ export class TodoService {
   private items: TodoItem[] = [];
   private nextId = 1;
 
-  addItem(title: string, description: string, priority: number): TodoItem {
+  addItem(title: string, description: string, _priority: number): TodoItem {
     const item: TodoItem = {
       id: this.nextId++,
       title,
