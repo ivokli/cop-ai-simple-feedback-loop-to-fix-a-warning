@@ -6,7 +6,7 @@ interface TodoListProps {
   maxItems: number;
 }
 
-export function TodoList({ maxItems }: TodoListProps) {
+export function TodoList({ maxItems: _maxItems }: TodoListProps) {
   const [items, setItems] = useState<TodoItem[]>([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
