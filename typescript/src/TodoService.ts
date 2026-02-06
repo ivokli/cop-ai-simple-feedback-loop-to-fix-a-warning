@@ -17,7 +17,7 @@ export class TodoService {
   }
 
   // When soft is true, should mark as deleted instead of removing
-  removeItem(id: number, soft: boolean): boolean {
+  removeItem(id: number, _soft: boolean): boolean {
     const index = this.items.findIndex(item => item.id === id);
     if (index !== -1) {
       this.items.splice(index, 1);
