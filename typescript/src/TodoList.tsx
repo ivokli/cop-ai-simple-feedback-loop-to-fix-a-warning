@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { TodoItem } from './TodoItem';
 import { todoService } from './TodoService';
 
@@ -7,17 +7,13 @@ interface TodoListProps {
 }
 
 export function TodoList({ maxItems: _maxItems }: TodoListProps) {
-  const [items, setItems] = useState<TodoItem[]>([]);
+  const [items, setItems] = useState<TodoItem[]>(() => todoService.getAllItems());
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const refreshItems = () => {
     setItems(todoService.getAllItems());
   };
-
-  useEffect(() => {
-    refreshItems();
-  }, []);
 
   const handleAdd = (event: React.FormEvent) => {
     event.preventDefault();
