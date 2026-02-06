@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { TodoItem } from './TodoItem';
 import { todoService } from './TodoService';
 
@@ -6,19 +6,14 @@ interface TodoListProps {
   maxItems: number;
 }
 
-export function TodoList({ maxItems }: TodoListProps) {
-  const [items, setItems] = useState<TodoItem[]>([]);
+export function TodoList({ maxItems: _maxItems }: TodoListProps) {
+  const [items, setItems] = useState<TodoItem[]>(() => todoService.getAllItems());
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const unusedState = useState(false);
 
   const refreshItems = () => {
     setItems(todoService.getAllItems());
   };
-
-  useEffect(() => {
-    refreshItems();
-  }, []);
 
   const handleAdd = (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,7 +26,7 @@ export function TodoList({ maxItems }: TodoListProps) {
   };
 
   // Should show confirmation with item title before completing
-  const handleComplete = (id: number, itemTitle: string) => {
+  const handleComplete = (id: number, _itemTitle: string) => {
     todoService.completeItem(id);
     refreshItems();
   };
