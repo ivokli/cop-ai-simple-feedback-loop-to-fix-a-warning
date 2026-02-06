@@ -30,7 +30,7 @@ export function TodoList({ maxItems: _maxItems }: TodoListProps) {
   };
 
   // Should show confirmation with item title before completing
-  const handleComplete = (id: number, itemTitle: string) => {
+  const handleComplete = (id: number, _itemTitle: string) => {
     todoService.completeItem(id);
     refreshItems();
   };
